@@ -10,17 +10,14 @@ import cors from'cors'
 const app = express()
 
 var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // For legacy browser support
+  origin: true,
+  credentials:true,
 }
 
 app.use(cors(corsOptions));
-
+app.options('*', cors(corsOptions));
 dotenv.config()
 
-
-// 'https://me-tube-23.netlify.app/'
-//Connecting to DB
 const connect = ()=>{
     mongoose.connect(process.env.MONGO_URI).then(()=> console.log("Mongo Connected")).catch((err)=> console.log(err))
 }
